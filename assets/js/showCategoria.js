@@ -5,6 +5,7 @@ const texto = document.createTextNode('No hay categoria, por favor agrega una');
 
 // contador
 let contador = 1;
+let aux = 0;
 if (localStorage.getItem("categorias") != undefined) {
     let arrComa = localStorage.getItem("categorias").slice(0, -1);
     let arr = arrComa.split(",");
@@ -59,14 +60,16 @@ if (localStorage.getItem("categorias") != undefined) {
         a.appendChild(divSpan);
         divAdd.appendChild(a);
         if (arraDatos != undefined) {
+            var divMensaje = document.createElement("span");
             arraDatos.forEach(elementos => {
+               
                 if(elementos.nombre == element){
-                    var divMensaje = document.createElement("span");
+                  
                     divMensaje.innerText = "* Eliminar dando click al nombre";
                     divMensaje.classList.add("text-danger","pb-5");
-                    divContentMain.appendChild(divMensaje);
                 }
             });
+            divContentMain.appendChild(divMensaje);
             arraDatos.forEach(elementos => {
                 if (elementos.nombre == element) {
                     var divContentTarea = document.createElement("div");
