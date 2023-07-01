@@ -5,7 +5,6 @@ const texto = document.createTextNode('No hay categoria, por favor agrega una');
 
 // contador
 let contador = 1;
-let aux = 0;
 if (localStorage.getItem("categorias") != undefined) {
     let arrComa = localStorage.getItem("categorias").slice(0, -1);
     let arr = arrComa.split(",");

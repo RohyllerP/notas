@@ -1,47 +1,3 @@
-const btnReturn = document.querySelector('.btnReturn');
-const guardar = document.querySelector('#btnAddCategoria');
-
-// add categoria
-
-// return back
-btnReturn.onclick = () => {
-    window.location.href = "index.html";
-}
-
-// add categoria 
-function inputCategoria() {
-    var mensaje = document.getElementById('mg-error');
-    var input = document.getElementById('inputAdd');
-
-    if (input.value.length > 40) {
-        mensaje.innerHTML = "La categoria no puede ser mas de 40 caracteres";
-        guardar.disabled = true;
-    } else {
-        mensaje.innerHTML = "";
-        guardar.disabled = false;
-    }
-}
-
-// formulario enviar
-function validarAdd(form) {
-    var mensaje = document.getElementById('mg-error');
-    if (form.addCategoria.value == "") {
-        form.addCategoria.focus();
-        mensaje.innerHTML = "Esta vacio";
-        return false;
-    } else {
-        var cadena = localStorage.getItem("categorias");
-        if (cadena != undefined) {
-            var arra = `${cadena}${form.addCategoria.value},`;
-        } else {
-            var arra = `${form.addCategoria.value},`;
-        }
-        localStorage.setItem("categorias", `${arra}`);
-        window.location.href = "index.html";
-        return true;
-    }
-}
-
 // add tarea
 const selectCategoria = document.querySelector('#select-categoria');
 const btnTarea = document.querySelector("#btnAddTarea");
@@ -50,18 +6,20 @@ let contadorSelect = 1;
 let arrComa = localStorage.getItem("categorias").slice(0, -1);
 let arr = arrComa.split(",");
 
+if(arr != undefined){
+    arr.forEach(element => {
+        const createOption = document.createElement('option');
+        createOption.innerText = `${element}`;
+        createOption.setAttribute("value", `${contadorSelect}`);
+        selectCategoria.appendChild(createOption);
+        ++contadorSelect;
+    });
+}
 
-arr.forEach(element => {
-    const createOption = document.createElement('option');
-    createOption.innerText = `${element}`;
-    createOption.setAttribute("value", `${contadorSelect}`);
-    selectCategoria.appendChild(createOption);
-    ++contadorSelect;
-});
 
 function inputCategoria() {
-    let mensaje = document.getElementById('mg-error-area');
-    let input = document.getElementById('form-area');
+    let mensaje = document.getElementById('mg-error');
+    let input = document.getElementById('inputAdd');
 
     if (input.value.length > 150) {
         mensaje.innerHTML = "La categoria no puede ser mas de 150 caracteres";

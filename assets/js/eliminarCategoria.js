@@ -38,17 +38,17 @@ let d = 1;
 function eliminarCategoria(dato) {
     if (arr.length > 1) {
         let dat = localStorage.getItem("tareas");
-        let localData = dat.replace(/,\s*$/, "");
-        var arraDatos = JSON.parse("[" + localData + "]");
-
-        var todoArra = arraDatos.filter(num => num.nombre != dato);
-        todoArra.forEach(objeto => {
-            objeto.id = d;
-            d++
-        });
-
-        const formatear = JSON.stringify(todoArra).slice(1,-1);
-        localStorage.setItem("tareas", `${formatear},`);
+        if(dat != undefined){
+            let localData = dat.replace(/,\s*$/, "");
+            var arraDatos = JSON.parse("[" + localData + "]");
+            var todoArra = arraDatos.filter(num => num.nombre != dato);
+            todoArra.forEach(objeto => {
+                objeto.id = d;
+                d++
+            });
+            const formatear = JSON.stringify(todoArra).slice(1,-1);
+            localStorage.setItem("tareas", `${formatear},`);
+        }
 
         let indice = arr.indexOf(dato);
         arr.splice(indice, 1);
