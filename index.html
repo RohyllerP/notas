@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="./assets/css/index.css" rel="stylesheet">
+    <title>Cartas</title>
+</head>
+
+<body>
+    <button id="menu-modal" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Eliminar tarea</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span>Deseas eliminar esta tarea?</span>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button id="modal-delete" type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <header style="background-color: var(--color-primario);"
+        class="container-fluid d-flex justify-content-between navbar">
+        <nav>
+            <ul style="list-style-type: none; position: relative; top: 5px;" class="d-flex">
+                <li>
+                    <a style="text-decoration: none;" class="text-gray text-inicio" href="/index.html">Inicio</a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <h4 class="text-media navbar-brand text-white user-select-none">Notas</h4>
+        </div>
+        <div class="d-flex pe-4">
+            <div>
+                <img class="img-w img-white"  src="./assets/img/portafolio-gray.png"
+                    alt="portafolio">
+            </div>
+            <div class="ps-3">
+                <img class="img-w img-white" src="./assets/img/perfil-gray.png"
+                    alt="perfil">
+            </div>
+        </div>
+    </header>
+    <main id="main-inicio">
+        <div class="pg-container pt-4" id="main-inicio-content">
+            <button id="btn-add-categoria" class="btn-reset">
+                <img style="width: 30px; height:30px;" src="assets/img/añadir.png" alt="añadir">
+                <span class="fs-5 position-relative" style="top:3px;">Agregar categoria</span>
+            </button>
+        </div>
+        <div class="mg-container mt-4" id="main-inicio-notas">
+            <div class="border border-dark accordion accordion-flush" id="accordionFlush">
+
+            </div>
+        </div>
+        <div class="ps-2" id="edit-btn">
+
+        </div>
+        
+        <script>
+            const div = document.querySelector("#edit-btn");
+            const todo = `        <div class="pg-container pt-4">
+                <a href="eliminar-categoria.html" style="text-decoration: none;" class="btn-reset text-dark">
+                <img style="width: 30px; height:30px;" src="assets/img/eliminar-circulo.png" alt="añadir">
+                <span class="fs-5 position-relative" style="top:3px;">Editar categorias</span>
+            </a>
+        </div>`
+            if (localStorage.getItem("categorias")) {
+                div.innerHTML = `${todo}`;
+            }
+            
+        </script>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="assets/js/showCategoria.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/eliminarTarea.js"></script>
+</body>
+
+</html>

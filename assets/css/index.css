@@ -1,0 +1,74 @@
+:root{
+    --color-primario: #141414;
+    --color-red: #FB3A3A;
+    --color-gray: #A7A7A7;
+}
+/* text */
+.text-red{
+    color: var(--color-red);
+}
+.text-gray{
+    color: var(--color-gray);
+    transition: all 0.3s ease-in;
+}
+.text-gray:hover{
+    color: white;
+}
+.text-dark{
+    color: var(--color-primario);
+}
+/* img */
+.img-white{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.img-w{
+    width: 30px;
+    height: 30px;
+}
+.img-white:hover{
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(296deg) brightness(105%) contrast(108%);
+}
+
+/* BACKGROUND*/
+.background-red{
+    background-color: var(--color-red);
+    color: white;
+}
+.background-red:hover{
+    background-color:  var(--color-gray);
+    color: black;
+}
+
+/* PADDING */
+.pg-container{
+    padding-left: 25px;
+}
+.mg-container{
+    padding-left: 32px;
+    padding-right: 32px;
+}
+/* button & input reset */
+.btn-reset{
+    border: 0px;
+    background-color: transparent;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 330px) {
+    .img-w{
+        width: 23px;
+        height: 23px;
+    }
+    .text-media{
+        font-size: 16px;
+        margin-top: 6px;
+        margin-left: 20px;
+    }
+    .text-inicio{
+        font-size: 13px;
+    }
+}

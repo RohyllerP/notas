@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="./assets/css/index.css" rel="stylesheet">
+    <title>Cartas</title>
+</head>
+<body>
+    <header style="background-color: var(--color-primario);" class="container-fluid d-flex justify-content-between navbar">
+        <nav>
+            <ul style="list-style-type: none; position: relative; top: 5px;" class="d-flex">
+                <li>
+                    <a style="text-decoration: none;" class="text-gray" href="/index.html">Inicio</a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <h4 class="navbar-brand text-white user-select-none">Notas</h4>
+        </div>
+        <div class="d-flex pe-4">
+            <div>
+                <img class="img-white" style="width: 30px; height: 30px" src="./assets/img/portafolio-gray.png" alt="portafolio">
+            </div>
+            <div class="ps-3">
+                <img class="img-white" style="width: 30px; height: 30px" src="./assets/img/perfil-gray.png" alt="perfil">
+            </div>
+        </div>
+    </header>
+    <main id="main-add-categoria">
+        <div class="pg-container pt-4">
+            <h1 class="fs-3 position-relative" style="top:3px;">Crear tarea</h1>
+        </div>
+        <form onsubmit="event.preventDefault(); validarTarea(this);" class="mx-4 pt-3">
+            <div class="px-4 py-4 border border-dark">
+                <div>
+                    <label for="select-categoria" class="fs-5 pb-1">Nombre de la categoría</label>
+                </div>
+                <select name="selectCategoria" id="select-categoria" class="form-select focus-ring focus-ring-light border-dark" aria-label="Default select example">
+                    <option value="0" selected>Selecciona una categoria</option>
+                </select>
+                <div class="pt-4">
+                    <label for="form-area" class="pb-1 fs-5">Escribe la tarea</label>
+                    <div class="form-group">
+                        <textarea onkeyup="inputCategoria();"  style="resize: none;" name="addTarea" class="form-control  focus-ring focus-ring-light border-dark" id="form-area" rows="4"></textarea>
+                        <span id="mg-error-area" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="pt-5">
+                    <button id="btnAddTarea" class="btn background-red" type="submit">Guardar</button>
+                </div>
+            </div>
+        </form>
+        <div class="ps-4" style="padding-top: 10vh">
+            <button class="btn-reset btnReturn">
+                <img style="width: 35px; height: 35px;" src="assets/img/return.png" alt="come back">
+                <span class="fs-5 position-relative" style="top: 3px;">Volver</span>
+            </button>
+        </div>
+    </main>
+    <script src="assets/js/add.js"></script>
+</body>
+</html>
