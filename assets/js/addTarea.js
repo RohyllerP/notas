@@ -2,7 +2,11 @@
 const selectCategoria = document.querySelector('#select-categoria');
 const btnTarea = document.querySelector("#btnAddTarea");
 let contadorSelect = 1;
-
+const btnReturn = document.querySelector('.btnReturn');
+// return back
+btnReturn.onclick = () => {
+    window.location.href = "index.html";
+}
 let arrComa = localStorage.getItem("categorias").slice(0, -1);
 let arr = arrComa.split(",");
 
