@@ -2,6 +2,11 @@ const main = document.getElementById('main-inicio-notas');
 const divPadre = document.querySelector('#accordionFlush');
 const text = document.createElement("h4");
 const texto = document.createTextNode('No hay categoria, por favor agrega una');
+const btnAddCategoria = document.getElementById('btn-add-categoria');
+
+btnAddCategoria.onclick = () =>{
+    window.location.href = "add-categoria.html";
+}
 
 // contador
 let contador = 1;
@@ -61,11 +66,11 @@ if (localStorage.getItem("categorias") != undefined) {
         if (arraDatos != undefined) {
             var divMensaje = document.createElement("span");
             arraDatos.forEach(elementos => {
-               
-                if(elementos.nombre == element){
-                  
+
+                if (elementos.nombre == element) {
+
                     divMensaje.innerText = "* Eliminar dando click al nombre";
-                    divMensaje.classList.add("text-danger","pb-5");
+                    divMensaje.classList.add("text-danger", "pb-5");
                 }
             });
             divContentMain.appendChild(divMensaje);
@@ -73,20 +78,20 @@ if (localStorage.getItem("categorias") != undefined) {
                 if (elementos.nombre == element) {
                     var divContentTarea = document.createElement("div");
                     var tareaImg = document.createElement("img");
-               
-                    tareaImg.onclick = (function(){
+
+                    tareaImg.onclick = (function () {
                         window.location.href = `editar-tarea.html?id=${elementos.id}`;
                     })
-                    tareaImg.setAttribute("src","assets/img/editar.svg");
+                    tareaImg.setAttribute("src", "assets/img/editar.svg");
                     tareaImg.style.width = "25px";
                     tareaImg.style.width = "25px";
                     tareaImg.style.cursor = "pointer";
-                    divContentTarea.classList.add("d-flex","justify-content-between","border-bottom","border-dark","mb-4");
+                    divContentTarea.classList.add("d-flex", "justify-content-between", "border-bottom", "border-dark", "mb-4");
 
                     var divContentTareaText = document.createElement("button");
-                    divContentTareaText.setAttribute("type","button");
-                    divContentTareaText.setAttribute("onclick",`eliminarTarea(${elementos.id});`);
-                    divContentTareaText.classList.add("pb-2","pt-2","btn-reset","position-relative","btnDeleteTarea");
+                    divContentTareaText.setAttribute("type", "button");
+                    divContentTareaText.setAttribute("onclick", `eliminarTarea(${elementos.id});`);
+                    divContentTareaText.classList.add("pb-2", "pt-2", "btn-reset", "position-relative", "btnDeleteTarea");
                     divContentTareaText.style.left = "-6px";
                     divContentTareaText.innerText = `${elementos.texto}`;
                     divContentTarea.appendChild(divContentTareaText);
@@ -96,7 +101,6 @@ if (localStorage.getItem("categorias") != undefined) {
             })
         }
         divContentMain.appendChild(divAdd);
-
 
         divHeader.appendChild(divButton);
         divItem.appendChild(divHeader);
