@@ -60,9 +60,18 @@ if (localStorage.getItem("categorias") != undefined) {
         divAdd.appendChild(a);
         if (arraDatos != undefined) {
             arraDatos.forEach(elementos => {
+                if(elementos.nombre == element){
+                    var divMensaje = document.createElement("span");
+                    divMensaje.innerText = "* Eliminar dando click al nombre";
+                    divMensaje.classList.add("text-danger","pb-5");
+                    divContentMain.appendChild(divMensaje);
+                }
+            });
+            arraDatos.forEach(elementos => {
                 if (elementos.nombre == element) {
                     var divContentTarea = document.createElement("div");
                     var tareaImg = document.createElement("img");
+               
                     tareaImg.onclick = (function(){
                         window.location.href = `editar-tarea.html?id=${elementos.id}`;
                     })
@@ -75,7 +84,7 @@ if (localStorage.getItem("categorias") != undefined) {
                     var divContentTareaText = document.createElement("button");
                     divContentTareaText.setAttribute("type","button");
                     divContentTareaText.setAttribute("onclick",`eliminarTarea(${elementos.id});`);
-                    divContentTareaText.classList.add("pb-2","btn-reset","position-relative","btnDeleteTarea");
+                    divContentTareaText.classList.add("pb-2","pt-2","btn-reset","position-relative","btnDeleteTarea");
                     divContentTareaText.style.left = "-6px";
                     divContentTareaText.innerText = `${elementos.texto}`;
                     divContentTarea.appendChild(divContentTareaText);
