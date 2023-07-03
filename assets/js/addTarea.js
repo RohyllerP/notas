@@ -1,11 +1,10 @@
 // add tarea
 const btnTarea = document.querySelector("#btnAddTarea");
 
-
 $(document).ready(function () {
     let contadorSelect = 1;
     // return back
-    $('.btnReturn').click = (function () {
+    $('.btnReturn').click(function () {
         window.location.href = "index.html";
     })
 

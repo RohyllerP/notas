@@ -82,7 +82,7 @@ $(document).ready(function () {
                         tareaImg.style.width = "25px";
                         tareaImg.style.cursor = "pointer";
                         divContentTarea.classList.add("d-flex", "justify-content-between", "border-bottom", "border-dark", "mb-4");
-
+                        divContentTarea.setAttribute("id", `tarea-${elementos.id}`);
                         var divContentTareaText = document.createElement("button");
                         divContentTareaText.setAttribute("type", "button");
                         divContentTareaText.setAttribute("onclick", `eliminarTarea(${elementos.id});`);

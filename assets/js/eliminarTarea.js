@@ -2,16 +2,17 @@ const datos = localStorage.getItem("tareas");
 
 $(document).ready(function () {
     $('#modal-delete').click(function () {
-        auxDelete = modalDelete();
+        modalDelete();
     });
 })
 
-let aux = 1;
+
 var datoAux = "";
 function eliminarTarea(dato) {
     $('#menu-modal').click();
     datoAux = dato;
 }
+let aux = 1;
 function modalDelete() {
     const forTarea = datos.replace(/,\s*$/, "")
     var arrayDatosTareas = JSON.parse("[" + forTarea + "]");
@@ -21,15 +22,14 @@ function modalDelete() {
             if (element.id == datoAux) {
                 $('#areaEditar').val(`${element.texto}`);
             }
-        });
-        arr.forEach(objeto => {
-            objeto.id = aux;
+            element.id = aux;
             aux++;
         });
         const formatear = JSON.stringify(arr).slice(1, -1);
         localStorage.setItem("tareas", `${formatear},`);
     }else{
+        $('#mg-error-area').text("");
         localStorage.removeItem("tareas");
     }
-    location.reload();
+    location.reload()
 }
