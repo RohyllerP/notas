@@ -1,24 +1,35 @@
 // add tarea
-const selectCategoria = document.querySelector('#select-categoria');
 const btnTarea = document.querySelector("#btnAddTarea");
-let contadorSelect = 1;
-const btnReturn = document.querySelector('.btnReturn');
-// return back
-btnReturn.onclick = () => {
-    window.location.href = "index.html";
-}
-let arrComa = localStorage.getItem("categorias").slice(0, -1);
-let arr = arrComa.split(",");
 
-if(arr != undefined){
-    arr.forEach(element => {
-        const createOption = document.createElement('option');
-        createOption.innerText = `${element}`;
-        createOption.setAttribute("value", `${contadorSelect}`);
-        selectCategoria.appendChild(createOption);
-        ++contadorSelect;
+
+$(document).ready(function () {
+    let contadorSelect = 1;
+    // return back
+    $('.btnReturn').click = (function () {
+        window.location.href = "index.html";
+    })
+
+    let arrComa = localStorage.getItem("categorias").slice(0, -1);
+    let arr = arrComa.split(",");
+  
+    $('#form-add-tarea').submit(function (event) {
+        event.preventDefault();
+        validarTarea();
     });
-}
+
+    $('#form-area').keyup(function () {
+        inputCategoria();
+    });
+    if (arr != undefined) {
+        arr.forEach(element => {
+            const createOption = document.createElement('option');
+            createOption.innerText = `${element}`;
+            createOption.setAttribute("value", `${contadorSelect}`);
+            $('#select-categoria').append(createOption);
+            ++contadorSelect;
+        });
+    }
+})
 
 
 function inputCategoria() {
@@ -34,21 +45,20 @@ function inputCategoria() {
     }
 }
 
-function validarTarea(form) {
-    const mensaje = document.querySelector('#mg-error-area');
-    if (form.selectCategoria.value == 0) {
+function validarTarea() {
+    if ($('#select-categoria').val() == 0) {
         alert("selecciona una opcion");
-        form.selectCategoria.focus();
+        $('#select-categoria').focus();
         return false;
     }
-    if (form.addTarea.value == "") {
-        form.addTarea.focus();
-        mensaje.innerHTML = "Esta vacio";
+    if ($('#select-categoria').val() == "") {
+        $('#select-categoria').focus();
+        $('#mg-error-area').text("Esta vacio");
         return false;
     }
 
     const dataTarea = localStorage.getItem("tareas");
-    if(dataTarea != undefined){
+    if (dataTarea != undefined) {
         const formatearTarea = dataTarea.replace(/,\s*$/, "");
         var arraDatos = JSON.parse("[" + formatearTarea + "]");
     }
@@ -56,9 +66,10 @@ function validarTarea(form) {
     if (arraDatos != undefined) {
         tamanoData = arraDatos.length;
     }
-    const cadenaText = form.selectCategoria.options[form.selectCategoria.selectedIndex].innerText;
+    const selec = document.querySelector('#select-categoria');
+    const cadenaText = selec.options[selec.selectedIndex].innerHTML;
     let numIdentifi = ++tamanoData;
-    const cadena = { id: numIdentifi ?? 1, nombre: `${cadenaText}`, texto: `${form.addTarea.value}` };
+    const cadena = { id: numIdentifi ?? 1, nombre: `${cadenaText}`, texto: `${$('#form-area').val()}` };
     const formatear = JSON.stringify(cadena);
 
     const local = localStorage.getItem('tareas');

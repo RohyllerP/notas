@@ -1,39 +1,45 @@
-const guardar = document.querySelector("#btnEditarTarea");
-const btnReturn = document.querySelector('.btnReturn');
-const areaEditar = document.querySelector("#areaEditar");
 const datos = localStorage.getItem("tareas");
 
+$(document).ready(function () {
+    if (datos != undefined) {
+        let localData = datos.replace(/,\s*$/, "");
+        let modiJson = JSON.parse("[" + localData + "]");
 
-if (datos != undefined) {
-    let localData = datos.replace(/,\s*$/, "");
-    let modiJson = JSON.parse("[" + localData + "]");
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlId = urlParams.get('id');
-    modiJson.forEach(element => {
-        if (element.id == urlId) {
-            areaEditar.value = `${element.texto}`;
-        }
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlId = urlParams.get('id');
+        modiJson.forEach(element => {
+            if (element.id == urlId) {
+                $('#areaEditar').val(`${element.texto}`);
+            }
+        });
+    }
+    $('#form-modi-tarea').submit(function (event) {
+        event.preventDefault();
+        modiTarea();
     });
-}
+    $('#areaEditar').keyup(function () {
+        inputArea();
+    });
+
+    $('.btnReturn').click(function() {
+        window.location.href = "index.html";
+    })
+})
 
 function inputArea() {
-    let mensaje = document.getElementById('error-area-edit');
-
-    if (areaEditar.value.length > 150) {
-        mensaje.innerHTML = "La categoria no puede ser mas de 150 caracteres";
-        guardar.disabled = true;
+    if ($('#areaEditar').value.length > 150) {
+        $('#error-area-edit').val("La categoria no puede ser mas de 150 caracteres");
+        $('#btnEditarTarea').disabled = true;
     } else {
-        mensaje.innerHTML = "";
-        guardar.disabled = false;
+        $('#error-area-edit').val("");
+        $('#btnEditarTarea').disabled = false;
     }
 }
 
-function modiTarea(form) {
-    let mensaje = document.querySelector('#error-area-edit');
-    if (form.editarTarea.value == "") {
-        form.editarTarea.focus();
-        mensaje.innerHTML = "Esta vacio";
+function modiTarea() {
+    if ($('#areaEditar').val() == "") {
+        $('#areaEditar').focus();
+        $('#areaEditar').val("Esta vacio");
         return false;
     }
 
@@ -48,13 +54,9 @@ function modiTarea(form) {
         // funcion de busqueda
         const buscarTarea = (tarea) => tarea.id == urlId;
         const indice = arrayDatosTareas.findIndex(buscarTarea);
-        arrayDatosTareas[indice].texto = `${form.editarTarea.value}`;
-        const formatear = JSON.stringify(arrayDatosTareas).slice(1,-1);
-        localStorage.setItem("tareas",`${formatear},`);
+        arrayDatosTareas[indice].texto = `${$('#areaEditar').val()}`;
+        const formatear = JSON.stringify(arrayDatosTareas).slice(1, -1);
+        localStorage.setItem("tareas", `${formatear},`);
         window.location.href = "index.html";
     }
-}
-
-btnReturn.onclick = () => {
-    window.location.href = "index.html";
 }

@@ -39,7 +39,7 @@
         <div class="pg-container pt-4">
             <h1 class="fs-3 position-relative" style="top:3px;">Crear tarea</h1>
         </div>
-        <form onsubmit="event.preventDefault(); validarTarea(this);" class="mx-4 pt-3">
+        <form id="form-add-tarea" class="mx-4 pt-3">
             <div class="px-4 py-4 border border-dark">
                 <div>
                     <label for="select-categoria" class="fs-5 pb-1">Nombre de la categoría</label>
@@ -50,7 +50,7 @@
                 <div class="pt-4">
                     <label for="form-area" class="pb-1 fs-5">Escribe la tarea</label>
                     <div class="form-group">
-                        <textarea onkeyup="inputCategoria();"  style="resize: none;" name="addTarea" class="form-control  focus-ring focus-ring-light border-dark" id="form-area" rows="4"></textarea>
+                        <textarea style="resize: none;" name="addTarea" class="form-control  focus-ring focus-ring-light border-dark" id="form-area" rows="4"></textarea>
                         <span id="mg-error-area" class="text-danger"></span>
                     </div>
                 </div>
@@ -66,6 +66,7 @@
             </button>
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="assets/js/addTarea.js"></script>
 </body>
 </html>

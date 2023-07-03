@@ -39,12 +39,12 @@
         <div class="pg-container pt-4">
             <h1 class="fs-3 position-relative" style="top:3px;">Editar tarea</h1>
         </div>
-        <form action="" onsubmit="event.preventDefault(); modiTarea(this);" class="mx-4 pt-3">
+        <form id="form-modi-tarea" class="mx-4 pt-3">
             <div class="px-4 py-4 border border-dark">
                 <div class="pt-2">
                     <label for="form-area" class="pb-1 fs-5">Modificar la tarea</label>
                     <div class="form-group">
-                        <textarea onkeyup="inputArea();"  style="resize: none;" name="editarTarea" class="form-control  focus-ring focus-ring-light border-dark" id="areaEditar" rows="4"></textarea>
+                        <textarea style="resize: none;" name="editarTarea" class="form-control  focus-ring focus-ring-light border-dark" id="areaEditar" rows="4"></textarea>
                         <span id="error-area-edit" class="text-danger"></span>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
             </button>
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="assets/js/editarTarea.js"></script>
 </body>
 </html>
