@@ -64,7 +64,7 @@ $(document).ready(function () {
                 var divMensaje = document.createElement("span");
                 arraDatos.forEach(elementos => {
                     if (elementos.nombre == element) {
-                        divMensaje.innerText = "* Eliminar dando click al nombre";
+                        divMensaje.innerText = "* Eliminar dando click a la tarea";
                         divMensaje.classList.add("text-danger", "pb-5");
                     }
                 });
@@ -73,24 +73,45 @@ $(document).ready(function () {
                     if (elementos.nombre == element) {
                         var divContentTarea = document.createElement("div");
                         var tareaImg = document.createElement("img");
+                        var tareaVerificado = document.createElement("img");
+                        var divContentImg = document.createElement("div");
+
+                        tareaVerificado.setAttribute("src", "assets/img/verificado.svg");
+                        tareaVerificado.style.width = "25px";
+                        tareaVerificado.style.width = "25px";
+                        tareaVerificado.style.cursor = "pointer";
 
                         tareaImg.onclick = (function () {
                             window.location.href = `editar-tarea.html?id=${elementos.id}`;
                         })
+                        tareaVerificado.onclick = (function(){
+                            clickTarea(elementos.id);
+                        })
                         tareaImg.setAttribute("src", "assets/img/editar.svg");
-                        tareaImg.style.width = "25px";
-                        tareaImg.style.width = "25px";
+                        tareaImg.style.width = "20px";
+                        tareaImg.style.width = "20px";
                         tareaImg.style.cursor = "pointer";
+
                         divContentTarea.classList.add("d-flex", "justify-content-between", "border-bottom", "border-dark", "mb-4");
                         divContentTarea.setAttribute("id", `tarea-${elementos.id}`);
                         var divContentTareaText = document.createElement("button");
                         divContentTareaText.setAttribute("type", "button");
                         divContentTareaText.setAttribute("onclick", `eliminarTarea(${elementos.id});`);
                         divContentTareaText.classList.add("pb-2", "pt-2", "btn-reset", "position-relative", "btnDeleteTarea");
+                        divContentTareaText.style.textAlign = "left";
                         divContentTareaText.style.left = "-6px";
+                        if(elementos.aux == 1){
+                            divContentTareaText.style.textDecorationLine = "line-through";
+                        }
                         divContentTareaText.innerText = `${elementos.texto}`;
+                        divContentImg.classList.add("d-flex");
+                        divContentImg.style.gap = "10px";
                         divContentTarea.appendChild(divContentTareaText);
-                        divContentTarea.appendChild(tareaImg);
+                        divContentImg.appendChild(tareaVerificado);
+                        divContentImg.appendChild(tareaImg);
+
+
+                        divContentTarea.appendChild(divContentImg);
                         divContentMain.appendChild(divContentTarea);
                     }
                 })
@@ -112,3 +133,17 @@ $(document).ready(function () {
     }
 
 })
+
+function clickTarea(dato) {
+    const datos = localStorage.getItem("tareas");
+    const forTarea = datos.replace(/,\s*$/, "")
+    var arraDatos = JSON.parse("[" + forTarea + "]");
+    arraDatos.forEach((elemento) => {
+        if(elemento.id == dato){
+            elemento.aux = 1;
+        }
+    })
+    const formatear = JSON.stringify(arraDatos).slice(1, -1);
+    localStorage.setItem("tareas", `${formatear},`);
+    location.reload()
+}

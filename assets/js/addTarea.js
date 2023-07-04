@@ -68,7 +68,7 @@ function validarTarea() {
     const selec = document.querySelector('#select-categoria');
     const cadenaText = selec.options[selec.selectedIndex].innerHTML;
     let numIdentifi = ++tamanoData;
-    const cadena = { id: numIdentifi ?? 1, nombre: `${cadenaText}`, texto: `${$('#form-area').val()}` };
+    const cadena = { id: numIdentifi ?? 1, nombre: `${cadenaText}`, texto: `${$('#form-area').val()}`,aux: 0 };
     const formatear = JSON.stringify(cadena);
 
     const local = localStorage.getItem('tareas');
